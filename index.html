@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Ravi ❤️ Buvi</title>
+<title>Ravi ❤️ Bujji</title>
 
-<!-- Premium fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Cormorant+Garamond:wght@400;600&family=Poppins:wght@300&display=swap" rel="stylesheet">
 
 <style>
 
@@ -18,17 +17,15 @@
  --gold:#c8a96a;
 }
 
-*{box-sizing:border-box}
-
 body{
  margin:0;
  font-family:Poppins;
  background:var(--cream);
  color:#333;
- overflow-x:hidden;
+ line-height:1.8;
 }
 
-/* ========== INTRO SCREEN ========== */
+/* ===== INTRO ===== */
 #intro{
  position:fixed;
  inset:0;
@@ -44,117 +41,107 @@ body{
 
 #intro h1{
  font-family:'Playfair Display';
- font-size:42px;
- letter-spacing:2px;
+ font-size:40px;
 }
 
-.enter-btn{
+.enter{
  margin-top:25px;
- padding:14px 28px;
+ padding:12px 26px;
  border:none;
+ border-radius:30px;
  background:var(--gold);
  color:white;
- border-radius:30px;
- font-size:16px;
 }
 
-/* ========== HERO ========== */
+/* ===== HERO ===== */
 .hero{
  background:var(--green);
  color:white;
- padding:80px 20px;
  text-align:center;
+ padding:90px 20px;
 }
 
 .hero h1{
  font-family:'Playfair Display';
- font-size:50px;
- margin:0;
+ font-size:56px;
 }
 
 .hero img{
  width:90%;
- max-width:450px;
+ max-width:520px;
  border-radius:20px;
  margin-top:30px;
- box-shadow:0 25px 50px rgba(0,0,0,0.4);
 }
 
-/* ========== STORY ========== */
-.story{
- padding:70px 25px;
- max-width:800px;
+.countdown{
+ margin-top:20px;
+ font-size:18px;
+}
+
+/* ===== SPLIT SECTIONS ===== */
+.split{
+ display:flex;
+ flex-wrap:wrap;
+ align-items:center;
+ max-width:1100px;
  margin:auto;
- line-height:1.9;
- font-size:17px;
+ padding:80px 20px;
+ gap:40px;
 }
 
-.story h2{
+.split img{
+ width:420px;
+ border-radius:20px;
+}
+
+.text{
+ flex:1;
+ font-family:'Cormorant Garamond';
+ font-size:22px;
+}
+
+h2{
  font-family:'Playfair Display';
  color:var(--sage);
- font-size:34px;
- margin-bottom:25px;
+ font-size:36px;
 }
 
-/* ========== GALLERY GRID ========== */
-.gallery{
- padding:60px 20px;
-}
-
+/* ===== GALLERY ===== */
 .grid{
  display:grid;
- grid-template-columns:repeat(2,1fr);
+ grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
  gap:10px;
- max-width:900px;
+ padding:60px 20px;
+ max-width:1100px;
  margin:auto;
 }
 
 .grid img{
  width:100%;
- border-radius:15px;
- object-fit:cover;
+ border-radius:12px;
 }
 
-/* ========== BUTTONS ========== */
+/* ===== BUTTONS ===== */
 .buttons{
  text-align:center;
  padding:40px;
 }
 
 button{
- padding:12px 25px;
- margin:6px;
+ padding:10px 22px;
  border:none;
  border-radius:25px;
  background:var(--sage);
  color:white;
+ margin:6px;
 }
 
-/* ========== MODAL ========== */
-.modal{
- display:none;
- position:fixed;
- inset:0;
- background:rgba(0,0,0,.8);
- justify-content:center;
- align-items:center;
-}
-
-.modal-box{
- background:white;
- padding:25px;
- border-radius:15px;
- max-width:320px;
- text-align:center;
-}
-
-/* ========== HEARTS ========== */
+/* ===== HEARTS ===== */
 .heart{
  position:fixed;
  top:-10px;
  animation:fall 6s linear infinite;
 }
-
 @keyframes fall{
  to{transform:translateY(110vh);opacity:0}
 }
@@ -166,70 +153,71 @@ canvas{
  pointer-events:none;
 }
 
+.modal{
+ display:none;
+ position:fixed;
+ inset:0;
+ background:rgba(0,0,0,.8);
+ justify-content:center;
+ align-items:center;
+}
+
+.box{
+ background:white;
+ padding:25px;
+ border-radius:15px;
+ max-width:300px;
+ text-align:center;
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
 <div id="intro">
-<h1>Happy Valentine’s Day<br>Buvi ❤️</h1>
-<button class="enter-btn" onclick="start()">Enter Our Forever</button>
+<h1>Happy Valentine’s Day<br>Bujji 💚</h1>
+<button class="enter" onclick="start()">Enter Our Story</button>
 </div>
 
 <canvas id="fireworks"></canvas>
 
-<!-- HERO -->
 <section class="hero">
-<h1>Ravi & Buvi</h1>
-<p id="days"></p>
+<h1>Ravi & Bujji</h1>
+<p class="countdown" id="count"></p>
 <img src="hero.jpg">
 </section>
 
-<!-- STORY -->
-<section class="story">
+<!-- STORY SPLIT -->
+<section class="split">
+<img src="photo1.jpg">
+<div class="text">
+<h2>Where It All Began</h2>
+We met at a mall… two strangers, nervous smiles, pretending to be calm.  
+But somewhere between those small talks, our hearts quietly recognized each other.
+</div>
+</section>
 
-<h2>Our Journey</h2>
+<section class="split">
+<div class="text">
+<h2>The Yes That Changed Everything</h2>
+When you said “yes” to meeting again the next day,  
+you didn’t know you had already become my forever.
+</div>
+<img src="photo2.jpg">
+</section>
 
-<p>
-We met on a quiet December afternoon at a mall,
-two strangers hiding nervous smiles…
-yet somehow feeling like we had known each other forever.
-</p>
-
-<p>
-When I asked if we could meet again the next day,
-and you softly said yes,
-I didn’t know that simple word would change my life.
-</p>
-
-<p>
-Conversations turned into comfort,
-comfort turned into love,
-and slowly… you became my home.
-</p>
-
-<p>
-January brought our families together,
-February brought my proposal,
-and June 8th brought the most beautiful moment of my life —
-marrying my best friend.
-</p>
-
-<p>
-Buvi… every day with you feels like a blessing,
-and in every lifetime, I would still choose you.
-Happy Valentine’s Day, my love. ❤️
-</p>
-
+<section class="split">
+<img src="photo3.jpg">
+<div class="text">
+<h2>Becoming One</h2>
+Families met, days passed, love grew deeper…  
+until June 8th, the day I married my best friend.
+</div>
 </section>
 
 <!-- GALLERY -->
-<section class="gallery">
-<div class="grid">
-<img src="photo1.jpg">
-<img src="photo2.jpg">
-<img src="photo3.jpg">
+<section class="grid">
 <img src="photo4.jpg">
 <img src="photo5.jpg">
 <img src="photo6.jpg">
@@ -240,13 +228,12 @@ Happy Valentine’s Day, my love. ❤️
 <img src="photo11.jpg">
 <img src="photo12.jpg">
 <img src="photo13.jpg">
-</div>
+<img src="photo14.jpg">
 </section>
 
-<!-- BUTTONS -->
 <div class="buttons">
 <button onclick="toggleMusic()">🎵 Our Song</button>
-<button onclick="openLetter()">💌 Love Letter</button>
+<button onclick="letter()">💌 Love Letter</button>
 <button onclick="surprise()">🎁 Surprise</button>
 </div>
 
@@ -254,15 +241,10 @@ Happy Valentine’s Day, my love. ❤️
 <source src="song.mp3">
 </audio>
 
-<!-- LETTER -->
-<div class="modal" id="letter">
-<div class="modal-box">
-<h3>My Buvi ❤️</h3>
-<p>
-You are my calm, my happiness, my forever.<br>
-Thank you for choosing me every day.
-</p>
-<button onclick="closeLetter()">Close</button>
+<div class="modal" id="modal">
+<div class="box">
+<p>Forever isn’t long enough with you ❤️</p>
+<button onclick="modal.style.display='none'">Close</button>
 </div>
 </div>
 
@@ -270,30 +252,24 @@ Thank you for choosing me every day.
 
 /* start */
 function start(){
- document.getElementById("intro").style.display="none";
- document.getElementById("music").play();
+ intro.style.display="none";
+ music.play();
  fireworks();
 }
 
-/* days counter */
+/* anniversary countdown */
 const startDate=new Date("June 8, 2025");
-const diff=Math.floor((new Date()-startDate)/(1000*60*60*24));
-document.getElementById("days").innerHTML="Married for "+diff+" days ❤️";
+setInterval(()=>{
+ const diff=Math.floor((new Date()-startDate)/(1000*60*60*24));
+ count.innerHTML="Married for "+diff+" days 💚";
+},1000);
 
 /* music */
-function toggleMusic(){
- const m=document.getElementById("music");
- m.paused?m.play():m.pause();
-}
+function toggleMusic(){music.paused?music.play():music.pause();}
 
-/* letter */
-function openLetter(){letter.style.display="flex";}
-function closeLetter(){letter.style.display="none";}
-
-/* surprise */
-function surprise(){
- alert("No matter how many years pass…\nI will still hold your hand the same way ❤️");
-}
+/* modal */
+function letter(){modal.style.display="flex";}
+function surprise(){alert("I choose you. Every lifetime. Every day. ❤️");}
 
 /* hearts */
 setInterval(()=>{
@@ -303,22 +279,19 @@ setInterval(()=>{
  h.style.left=Math.random()*100+"vw";
  document.body.appendChild(h);
  setTimeout(()=>h.remove(),6000);
-},500);
+},600);
 
 /* fireworks */
 function fireworks(){
  const c=document.getElementById("fireworks");
  const ctx=c.getContext("2d");
- c.width=window.innerWidth;
- c.height=window.innerHeight;
-
+ c.width=innerWidth; c.height=innerHeight;
  for(let i=0;i<50;i++){
   ctx.fillStyle="hsl("+Math.random()*360+",100%,60%)";
   ctx.beginPath();
   ctx.arc(Math.random()*c.width,Math.random()*c.height,3,0,6.28);
   ctx.fill();
  }
-
  setTimeout(()=>ctx.clearRect(0,0,c.width,c.height),1500);
 }
 
