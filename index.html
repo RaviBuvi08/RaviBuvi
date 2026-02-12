@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ravi ❤️ Buvi</title>
 
-<!-- Premium fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
-
 body{
  margin:0;
  font-family:Poppins;
- color:white;
- text-align:center;
  overflow-x:hidden;
+ text-align:center;
+ color:white;
  background:linear-gradient(-45deg,#ff758c,#ff7eb3,#ffc3a0,#ffafbd);
  background-size:400% 400%;
  animation:bg 12s ease infinite;
@@ -28,15 +25,71 @@ body{
 100%{background-position:0% 50%}
 }
 
-section{padding:60px 20px}
-
 h1{
  font-family:'Great Vibes';
- font-size:48px;
- margin:10px 0;
+ font-size:50px;
 }
 
-/* hearts animation */
+section{padding:60px 20px; display:none;}
+
+.hero{
+ width:90%;
+ max-width:400px;
+ border-radius:25px;
+ box-shadow:0 20px 40px rgba(0,0,0,0.4);
+}
+
+button{
+ padding:12px 25px;
+ border:none;
+ border-radius:30px;
+ margin:10px;
+ background:white;
+ color:#ff3b6f;
+ font-weight:bold;
+}
+
+.card{
+ background:rgba(255,255,255,0.15);
+ backdrop-filter:blur(15px);
+ padding:20px;
+ border-radius:20px;
+ margin:15px auto;
+ max-width:360px;
+}
+
+.slider{
+ width:90%;
+ max-width:400px;
+ margin:auto;
+ border-radius:20px;
+ overflow:hidden;
+}
+
+.slider img{
+ width:100%;
+ display:none;
+}
+
+/* Intro screen */
+#intro{
+ position:fixed;
+ inset:0;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+ background:black;
+ z-index:1000;
+}
+
+#intro h1{
+ color:white;
+ font-family:'Great Vibes';
+ font-size:40px;
+}
+
+/* hearts */
 .heart{
  position:fixed;
  top:-10px;
@@ -46,48 +99,11 @@ h1{
  to{transform:translateY(110vh);opacity:0}
 }
 
-/* glass cards */
-.card{
- background:rgba(255,255,255,0.15);
- backdrop-filter:blur(12px);
- border-radius:20px;
- padding:20px;
- margin:15px auto;
- max-width:360px;
-}
-
-/* hero */
-.hero{
- width:95%;
- max-width:400px;
- border-radius:25px;
- box-shadow:0 20px 40px rgba(0,0,0,0.4);
-}
-
-/* buttons */
-button{
- padding:12px 25px;
- border:none;
- border-radius:25px;
- margin:8px;
- font-weight:bold;
- background:white;
- color:#ff3b6f;
-}
-
-/* slideshow */
-.slider{
- width:95%;
- max-width:400px;
- margin:auto;
- border-radius:20px;
- overflow:hidden;
- box-shadow:0 10px 30px rgba(0,0,0,.4);
-}
-
-.slider img{
- width:100%;
- display:none;
+/* fireworks canvas */
+canvas{
+ position:fixed;
+ inset:0;
+ pointer-events:none;
 }
 
 .modal{
@@ -106,49 +122,37 @@ button{
  border-radius:20px;
  max-width:300px;
 }
-
 </style>
 </head>
 
 <body>
 
-<script>
-/* floating hearts */
-setInterval(()=>{
- const h=document.createElement("div");
- h.className="heart";
- h.innerHTML="❤️";
- h.style.left=Math.random()*100+"vw";
- document.body.appendChild(h);
- setTimeout(()=>h.remove(),6000);
-},300);
-</script>
+<div id="intro">
+<h1>Tap to Enter Our Forever ❤️</h1>
+<button onclick="startExperience()">Enter</button>
+</div>
 
-<!-- HERO -->
-<section>
+<canvas id="fireworks"></canvas>
+
+<section id="mainContent">
+
 <h1>Ravi ❤️ Buvi</h1>
 <p id="days"></p>
 
 <img src="hero.jpg" class="hero"><br>
 
-<button onclick="toggleMusic()">🎵 Our Song</button>
+<button onclick="toggleMusic()">🎵 Pause / Play</button>
 <button onclick="openLetter()">💌 Love Letter</button>
-</section>
+<button onclick="unlockSurprise()">🎁 Secret Surprise</button>
 
-<!-- STORY -->
-<section>
 <h2 style="font-family:Great Vibes">Our Journey</h2>
 
-<div class="card">💘 We met… nervous smiles… destiny quietly began.</div>
-<div class="card">🌸 You said YES… and my world changed forever.</div>
+<div class="card">💘 We met… destiny quietly began.</div>
+<div class="card">🌸 You said YES… my world changed forever.</div>
 <div class="card">👨‍👩‍👧 Families met… hearts connected.</div>
-<div class="card">💍 Love grew deeper each day.</div>
+<div class="card">💍 Love grew deeper every day.</div>
 <div class="card">💒 June 8 — I married my best friend ❤️</div>
 
-</section>
-
-<!-- SLIDESHOW -->
-<section>
 <h2 style="font-family:Great Vibes">Our Memories</h2>
 
 <div class="slider" id="slider">
@@ -170,16 +174,10 @@ setInterval(()=>{
 
 </section>
 
-<footer style="padding:40px">
-Made with endless Infinity love ❤️
-</footer>
-
-<!-- MUSIC -->
 <audio id="music" loop>
 <source src="song.mp3" type="audio/mpeg">
 </audio>
 
-<!-- LOVE LETTER MODAL -->
 <div class="modal" id="letter">
 <div class="modal-content">
 <h2>My Buvi ❤️</h2>
@@ -195,12 +193,20 @@ Forever yours.
 
 <script>
 
+/* ENTER EXPERIENCE */
+function startExperience(){
+ document.getElementById("intro").style.display="none";
+ document.getElementById("mainContent").style.display="block";
+ document.getElementById("music").play();
+ launchFireworks();
+}
+
 /* days counter */
 const start=new Date("June 8, 2025");
 const diff=Math.floor((new Date()-start)/(1000*60*60*24));
 document.getElementById("days").innerHTML="Married for "+diff+" days ❤️";
 
-/* music */
+/* music toggle */
 function toggleMusic(){
  const m=document.getElementById("music");
  m.paused?m.play():m.pause();
@@ -210,16 +216,46 @@ function toggleMusic(){
 function openLetter(){letter.style.display="flex";}
 function closeLetter(){letter.style.display="none";}
 
+/* surprise */
+function unlockSurprise(){
+ alert("Forever isn't long enough with you ❤️\n\nI choose you. Every single lifetime.");
+}
+
 /* slideshow */
 let slides=document.querySelectorAll("#slider img");
 let i=0;
 slides[0].style.display="block";
-
 setInterval(()=>{
  slides[i].style.display="none";
  i=(i+1)%slides.length;
  slides[i].style.display="block";
 },2500);
+
+/* floating hearts */
+setInterval(()=>{
+ const h=document.createElement("div");
+ h.className="heart";
+ h.innerHTML="❤️";
+ h.style.left=Math.random()*100+"vw";
+ document.body.appendChild(h);
+ setTimeout(()=>h.remove(),6000);
+},400);
+
+/* fireworks */
+const canvas=document.getElementById("fireworks");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+function launchFireworks(){
+ for(let i=0;i<30;i++){
+  ctx.fillStyle="hsl("+Math.random()*360+",100%,50%)";
+  ctx.beginPath();
+  ctx.arc(Math.random()*canvas.width,Math.random()*canvas.height,4,0,Math.PI*2);
+  ctx.fill();
+ }
+ setTimeout(()=>ctx.clearRect(0,0,canvas.width,canvas.height),1500);
+}
 
 </script>
 
