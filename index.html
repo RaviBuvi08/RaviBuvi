@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Ravi ❤️ Buvi</title>
+
+<!-- Premium fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+ margin:0;
+ font-family:Poppins;
+ color:white;
+ text-align:center;
+ overflow-x:hidden;
+ background:linear-gradient(-45deg,#ff758c,#ff7eb3,#ffc3a0,#ffafbd);
+ background-size:400% 400%;
+ animation:bg 12s ease infinite;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+section{padding:60px 20px}
+
+h1{
+ font-family:'Great Vibes';
+ font-size:48px;
+ margin:10px 0;
+}
+
+/* hearts animation */
+.heart{
+ position:fixed;
+ top:-10px;
+ animation:fall 6s linear infinite;
+}
+@keyframes fall{
+ to{transform:translateY(110vh);opacity:0}
+}
+
+/* glass cards */
+.card{
+ background:rgba(255,255,255,0.15);
+ backdrop-filter:blur(12px);
+ border-radius:20px;
+ padding:20px;
+ margin:15px auto;
+ max-width:360px;
+}
+
+/* hero */
+.hero{
+ width:95%;
+ max-width:400px;
+ border-radius:25px;
+ box-shadow:0 20px 40px rgba(0,0,0,0.4);
+}
+
+/* buttons */
+button{
+ padding:12px 25px;
+ border:none;
+ border-radius:25px;
+ margin:8px;
+ font-weight:bold;
+ background:white;
+ color:#ff3b6f;
+}
+
+/* slideshow */
+.slider{
+ width:95%;
+ max-width:400px;
+ margin:auto;
+ border-radius:20px;
+ overflow:hidden;
+ box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+
+.slider img{
+ width:100%;
+ display:none;
+}
+
+.modal{
+ display:none;
+ position:fixed;
+ inset:0;
+ background:rgba(0,0,0,.8);
+ justify-content:center;
+ align-items:center;
+}
+
+.modal-content{
+ background:white;
+ color:#333;
+ padding:25px;
+ border-radius:20px;
+ max-width:300px;
+}
+
+</style>
+</head>
+
+<body>
+
+<script>
+/* floating hearts */
+setInterval(()=>{
+ const h=document.createElement("div");
+ h.className="heart";
+ h.innerHTML="❤️";
+ h.style.left=Math.random()*100+"vw";
+ document.body.appendChild(h);
+ setTimeout(()=>h.remove(),6000);
+},300);
+</script>
+
+<!-- HERO -->
+<section>
+<h1>Ravi ❤️ Buvi</h1>
+<p id="days"></p>
+
+<img src="hero.jpg" class="hero"><br>
+
+<button onclick="toggleMusic()">🎵 Our Song</button>
+<button onclick="openLetter()">💌 Love Letter</button>
+</section>
+
+<!-- STORY -->
+<section>
+<h2 style="font-family:Great Vibes">Our Journey</h2>
+
+<div class="card">💘 We met… nervous smiles… destiny quietly began.</div>
+<div class="card">🌸 You said YES… and my world changed forever.</div>
+<div class="card">👨‍👩‍👧 Families met… hearts connected.</div>
+<div class="card">💍 Love grew deeper each day.</div>
+<div class="card">💒 June 8 — I married my best friend ❤️</div>
+
+</section>
+
+<!-- SLIDESHOW -->
+<section>
+<h2 style="font-family:Great Vibes">Our Memories</h2>
+
+<div class="slider" id="slider">
+<img src="photo1.jpg">
+<img src="photo2.jpg">
+<img src="photo3.jpg">
+<img src="photo4.jpg">
+<img src="photo5.jpg">
+<img src="photo6.jpg">
+<img src="photo7.jpg">
+<img src="photo8.jpg">
+<img src="photo9.jpg">
+<img src="photo10.jpg">
+<img src="photo11.jpg">
+<img src="photo12.jpg">
+<img src="photo13.jpg">
+<img src="photo14.jpg">
+</div>
+
+</section>
+
+<footer style="padding:40px">
+Made with endless Infinity love ❤️
+</footer>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+<source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<!-- LOVE LETTER MODAL -->
+<div class="modal" id="letter">
+<div class="modal-content">
+<h2>My Buvi ❤️</h2>
+<p>
+Meeting you was destiny.<br>
+Loving you was effortless.<br>
+Marrying you was the best decision of my life.<br><br>
+Forever yours.
+</p>
+<button onclick="closeLetter()">Close</button>
+</div>
+</div>
+
+<script>
+
+/* days counter */
+const start=new Date("June 8, 2025");
+const diff=Math.floor((new Date()-start)/(1000*60*60*24));
+document.getElementById("days").innerHTML="Married for "+diff+" days ❤️";
+
+/* music */
+function toggleMusic(){
+ const m=document.getElementById("music");
+ m.paused?m.play():m.pause();
+}
+
+/* modal */
+function openLetter(){letter.style.display="flex";}
+function closeLetter(){letter.style.display="none";}
+
+/* slideshow */
+let slides=document.querySelectorAll("#slider img");
+let i=0;
+slides[0].style.display="block";
+
+setInterval(()=>{
+ slides[i].style.display="none";
+ i=(i+1)%slides.length;
+ slides[i].style.display="block";
+},2500);
+
+</script>
+
+</body>
+</html>
