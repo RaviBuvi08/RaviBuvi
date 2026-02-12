@@ -1,111 +1,136 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
 <title>Ravi ❤️ Buvi</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+<!-- Premium fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
+
+:root{
+ --green:#0f2e25;
+ --sage:#1f4d3b;
+ --cream:#f6f3ee;
+ --gold:#c8a96a;
+}
+
+*{box-sizing:border-box}
+
 body{
  margin:0;
  font-family:Poppins;
+ background:var(--cream);
+ color:#333;
  overflow-x:hidden;
- text-align:center;
- color:white;
- background:linear-gradient(-45deg,#ff758c,#ff7eb3,#ffc3a0,#ffafbd);
- background-size:400% 400%;
- animation:bg 12s ease infinite;
 }
 
-@keyframes bg{
-0%{background-position:0% 50%}
-50%{background-position:100% 50%}
-100%{background-position:0% 50%}
-}
-
-h1{
- font-family:'Great Vibes';
- font-size:50px;
-}
-
-section{padding:60px 20px; display:none;}
-
-.hero{
- width:90%;
- max-width:400px;
- border-radius:25px;
- box-shadow:0 20px 40px rgba(0,0,0,0.4);
-}
-
-button{
- padding:12px 25px;
- border:none;
- border-radius:30px;
- margin:10px;
- background:white;
- color:#ff3b6f;
- font-weight:bold;
-}
-
-.card{
- background:rgba(255,255,255,0.15);
- backdrop-filter:blur(15px);
- padding:20px;
- border-radius:20px;
- margin:15px auto;
- max-width:360px;
-}
-
-.slider{
- width:90%;
- max-width:400px;
- margin:auto;
- border-radius:20px;
- overflow:hidden;
-}
-
-.slider img{
- width:100%;
- display:none;
-}
-
-/* Intro screen */
+/* ========== INTRO SCREEN ========== */
 #intro{
  position:fixed;
  inset:0;
+ background:var(--green);
+ color:white;
  display:flex;
  flex-direction:column;
  justify-content:center;
  align-items:center;
- background:black;
- z-index:1000;
+ z-index:999;
+ text-align:center;
 }
 
 #intro h1{
+ font-family:'Playfair Display';
+ font-size:42px;
+ letter-spacing:2px;
+}
+
+.enter-btn{
+ margin-top:25px;
+ padding:14px 28px;
+ border:none;
+ background:var(--gold);
  color:white;
- font-family:'Great Vibes';
- font-size:40px;
+ border-radius:30px;
+ font-size:16px;
 }
 
-/* hearts */
-.heart{
- position:fixed;
- top:-10px;
- animation:fall 6s linear infinite;
-}
-@keyframes fall{
- to{transform:translateY(110vh);opacity:0}
+/* ========== HERO ========== */
+.hero{
+ background:var(--green);
+ color:white;
+ padding:80px 20px;
+ text-align:center;
 }
 
-/* fireworks canvas */
-canvas{
- position:fixed;
- inset:0;
- pointer-events:none;
+.hero h1{
+ font-family:'Playfair Display';
+ font-size:50px;
+ margin:0;
 }
 
+.hero img{
+ width:90%;
+ max-width:450px;
+ border-radius:20px;
+ margin-top:30px;
+ box-shadow:0 25px 50px rgba(0,0,0,0.4);
+}
+
+/* ========== STORY ========== */
+.story{
+ padding:70px 25px;
+ max-width:800px;
+ margin:auto;
+ line-height:1.9;
+ font-size:17px;
+}
+
+.story h2{
+ font-family:'Playfair Display';
+ color:var(--sage);
+ font-size:34px;
+ margin-bottom:25px;
+}
+
+/* ========== GALLERY GRID ========== */
+.gallery{
+ padding:60px 20px;
+}
+
+.grid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:10px;
+ max-width:900px;
+ margin:auto;
+}
+
+.grid img{
+ width:100%;
+ border-radius:15px;
+ object-fit:cover;
+}
+
+/* ========== BUTTONS ========== */
+.buttons{
+ text-align:center;
+ padding:40px;
+}
+
+button{
+ padding:12px 25px;
+ margin:6px;
+ border:none;
+ border-radius:25px;
+ background:var(--sage);
+ color:white;
+}
+
+/* ========== MODAL ========== */
 .modal{
  display:none;
  position:fixed;
@@ -115,47 +140,93 @@ canvas{
  align-items:center;
 }
 
-.modal-content{
+.modal-box{
  background:white;
- color:#333;
  padding:25px;
- border-radius:20px;
- max-width:300px;
+ border-radius:15px;
+ max-width:320px;
+ text-align:center;
 }
+
+/* ========== HEARTS ========== */
+.heart{
+ position:fixed;
+ top:-10px;
+ animation:fall 6s linear infinite;
+}
+
+@keyframes fall{
+ to{transform:translateY(110vh);opacity:0}
+}
+
+/* fireworks */
+canvas{
+ position:fixed;
+ inset:0;
+ pointer-events:none;
+}
+
 </style>
 </head>
 
 <body>
 
+<!-- INTRO -->
 <div id="intro">
-<h1>Tap to Enter Our Forever ❤️</h1>
-<button onclick="startExperience()">Enter</button>
+<h1>Happy Valentine’s Day<br>Buvi ❤️</h1>
+<button class="enter-btn" onclick="start()">Enter Our Forever</button>
 </div>
 
 <canvas id="fireworks"></canvas>
 
-<section id="mainContent">
-
-<h1>Ravi ❤️ Buvi</h1>
+<!-- HERO -->
+<section class="hero">
+<h1>Ravi & Buvi</h1>
 <p id="days"></p>
+<img src="hero.jpg">
+</section>
 
-<img src="hero.jpg" class="hero"><br>
+<!-- STORY -->
+<section class="story">
 
-<button onclick="toggleMusic()">🎵 Pause / Play</button>
-<button onclick="openLetter()">💌 Love Letter</button>
-<button onclick="unlockSurprise()">🎁 Secret Surprise</button>
+<h2>Our Journey</h2>
 
-<h2 style="font-family:Great Vibes">Our Journey</h2>
+<p>
+We met on a quiet December afternoon at a mall,
+two strangers hiding nervous smiles…
+yet somehow feeling like we had known each other forever.
+</p>
 
-<div class="card">💘 We met… destiny quietly began.</div>
-<div class="card">🌸 You said YES… my world changed forever.</div>
-<div class="card">👨‍👩‍👧 Families met… hearts connected.</div>
-<div class="card">💍 Love grew deeper every day.</div>
-<div class="card">💒 June 8 — I married my best friend ❤️</div>
+<p>
+When I asked if we could meet again the next day,
+and you softly said yes,
+I didn’t know that simple word would change my life.
+</p>
 
-<h2 style="font-family:Great Vibes">Our Memories</h2>
+<p>
+Conversations turned into comfort,
+comfort turned into love,
+and slowly… you became my home.
+</p>
 
-<div class="slider" id="slider">
+<p>
+January brought our families together,
+February brought my proposal,
+and June 8th brought the most beautiful moment of my life —
+marrying my best friend.
+</p>
+
+<p>
+Buvi… every day with you feels like a blessing,
+and in every lifetime, I would still choose you.
+Happy Valentine’s Day, my love. ❤️
+</p>
+
+</section>
+
+<!-- GALLERY -->
+<section class="gallery">
+<div class="grid">
 <img src="photo1.jpg">
 <img src="photo2.jpg">
 <img src="photo3.jpg">
@@ -169,23 +240,27 @@ canvas{
 <img src="photo11.jpg">
 <img src="photo12.jpg">
 <img src="photo13.jpg">
-<img src="photo14.jpg">
 </div>
-
 </section>
 
+<!-- BUTTONS -->
+<div class="buttons">
+<button onclick="toggleMusic()">🎵 Our Song</button>
+<button onclick="openLetter()">💌 Love Letter</button>
+<button onclick="surprise()">🎁 Surprise</button>
+</div>
+
 <audio id="music" loop>
-<source src="song.mp3" type="audio/mpeg">
+<source src="song.mp3">
 </audio>
 
+<!-- LETTER -->
 <div class="modal" id="letter">
-<div class="modal-content">
-<h2>My Buvi ❤️</h2>
+<div class="modal-box">
+<h3>My Buvi ❤️</h3>
 <p>
-Meeting you was destiny.<br>
-Loving you was effortless.<br>
-Marrying you was the best decision of my life.<br><br>
-Forever yours.
+You are my calm, my happiness, my forever.<br>
+Thank you for choosing me every day.
 </p>
 <button onclick="closeLetter()">Close</button>
 </div>
@@ -193,68 +268,58 @@ Forever yours.
 
 <script>
 
-/* ENTER EXPERIENCE */
-function startExperience(){
+/* start */
+function start(){
  document.getElementById("intro").style.display="none";
- document.getElementById("mainContent").style.display="block";
  document.getElementById("music").play();
- launchFireworks();
+ fireworks();
 }
 
 /* days counter */
-const start=new Date("June 8, 2025");
-const diff=Math.floor((new Date()-start)/(1000*60*60*24));
+const startDate=new Date("June 8, 2025");
+const diff=Math.floor((new Date()-startDate)/(1000*60*60*24));
 document.getElementById("days").innerHTML="Married for "+diff+" days ❤️";
 
-/* music toggle */
+/* music */
 function toggleMusic(){
  const m=document.getElementById("music");
  m.paused?m.play():m.pause();
 }
 
-/* modal */
+/* letter */
 function openLetter(){letter.style.display="flex";}
 function closeLetter(){letter.style.display="none";}
 
 /* surprise */
-function unlockSurprise(){
- alert("Forever isn't long enough with you ❤️\n\nI choose you. Every single lifetime.");
+function surprise(){
+ alert("No matter how many years pass…\nI will still hold your hand the same way ❤️");
 }
 
-/* slideshow */
-let slides=document.querySelectorAll("#slider img");
-let i=0;
-slides[0].style.display="block";
-setInterval(()=>{
- slides[i].style.display="none";
- i=(i+1)%slides.length;
- slides[i].style.display="block";
-},2500);
-
-/* floating hearts */
+/* hearts */
 setInterval(()=>{
  const h=document.createElement("div");
  h.className="heart";
- h.innerHTML="❤️";
+ h.innerHTML="💚";
  h.style.left=Math.random()*100+"vw";
  document.body.appendChild(h);
  setTimeout(()=>h.remove(),6000);
-},400);
+},500);
 
 /* fireworks */
-const canvas=document.getElementById("fireworks");
-const ctx=canvas.getContext("2d");
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
+function fireworks(){
+ const c=document.getElementById("fireworks");
+ const ctx=c.getContext("2d");
+ c.width=window.innerWidth;
+ c.height=window.innerHeight;
 
-function launchFireworks(){
- for(let i=0;i<30;i++){
-  ctx.fillStyle="hsl("+Math.random()*360+",100%,50%)";
+ for(let i=0;i<50;i++){
+  ctx.fillStyle="hsl("+Math.random()*360+",100%,60%)";
   ctx.beginPath();
-  ctx.arc(Math.random()*canvas.width,Math.random()*canvas.height,4,0,Math.PI*2);
+  ctx.arc(Math.random()*c.width,Math.random()*c.height,3,0,6.28);
   ctx.fill();
  }
- setTimeout(()=>ctx.clearRect(0,0,canvas.width,canvas.height),1500);
+
+ setTimeout(()=>ctx.clearRect(0,0,c.width,c.height),1500);
 }
 
 </script>
